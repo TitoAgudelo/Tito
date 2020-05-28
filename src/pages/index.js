@@ -1,6 +1,7 @@
 import React from 'react'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
+import Img from 'gatsby-image'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
 
@@ -26,6 +27,7 @@ class RootIndex extends React.Component {
             })}
           </ul>
         </div>
+        <Img alt={author.node.name} sizes={author.node.altImage.sizes} />
       </div>
     )
   }
@@ -67,6 +69,16 @@ export const pageQuery = graphql`
             sizes(
               maxWidth: 1180
               maxHeight: 480
+              resizingBehavior: PAD
+              background: "rgb:000000"
+            ) {
+              ...GatsbyContentfulSizes_withWebp
+            }
+          }
+          altImage: imageAlt {
+            sizes(
+              maxWidth: 2400
+              maxHeight: 1224
               resizingBehavior: PAD
               background: "rgb:000000"
             ) {
